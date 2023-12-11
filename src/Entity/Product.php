@@ -19,7 +19,7 @@ class Product
     private ?string $name;
 
     /** description du produit */
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column(nullable: true, length: 2000)]
     private ?string $description;
 
     /** date ajout au catalogue */
@@ -31,7 +31,7 @@ class Product
     private ?int $quantityInStock ;
 
     /** prix HT */
-    #[ORM\Column]
+    #[ORM\Column(type: 'integer')]
     private ?float $price;
 
     /** nom de l'image */
