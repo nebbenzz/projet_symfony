@@ -6,9 +6,9 @@
         <li> description du produit : {{ description }}</li>
     {% endif %}
 
-    <li> quantite du produit : {{ product.quantityInStock }}</li>
+    <li> quantite en stock du produit : {{ product.quantityInStock }}</li>
     <li> prix du produit : {{ product.price|price }} </li>
-    <li> <img src="/build/imagesProduit/{{ product.imageName }}"> </li>
+    <li> <img src="/imagesProduit/{{ product.imageName }}"> </li>
     <li> Ajouté au catalogue le : {{ product.createdAt|dateFr }}</li>
     {%  if products is not defined %}
     <li> <a href="{{ path('product_show_all') }}"> Lister tous les produits </a> </li>
