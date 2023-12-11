@@ -26,7 +26,7 @@
         <li> prix du produit : {{ product.price|price }} </li>
         <li> <img src="/build/imagesProduit/{{ product.imageName }}"> </li>
         <li> Ajouté au catalogue le : {{ product.createdAt|dateFr }}</li>
-
+        <li> <a href="{{ path('product_show', {'id':product.id}) }}"> Voir la fiche </a> </li>
     </ul>
         {% else %}
         <p> Il n'y a aucun produit</p>
