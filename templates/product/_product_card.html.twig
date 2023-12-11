@@ -1,0 +1,18 @@
+<ul>
+    <li> nom du produit : {{ product.name }}</li>
+
+    {%  set description = product.description %}
+    {% if product.description is not empty %}
+        <li> description du produit : {{ description }}</li>
+    {% endif %}
+
+    <li> quantite du produit : {{ product.quantityInStock }}</li>
+    <li> prix du produit : {{ product.price|price }} </li>
+    <li> <img src="/build/imagesProduit/{{ product.imageName }}"> </li>
+    <li> Ajouté au catalogue le : {{ product.createdAt|dateFr }}</li>
+    {%  if products is not defined %}
+    <li> <a href="{{ path('product_show_all') }}"> Lister tous les produits </a> </li>
+    {% else %}
+    <li> <a href="{{ path('product_show', {'id':product.id}) }}"> Voir la fiche </a> </li>
+    {% endif %}
+</ul>

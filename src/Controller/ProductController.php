@@ -21,7 +21,7 @@ class ProductController extends AbstractController
         //il faut construire une page HTML avec les produits recuperes
 
         //il faut retourner cette page
-        return $this->render('base.html.twig',
+        return $this->render('product/product_show_all.html.twig',
         ['products'=> $products]);
     }
 
