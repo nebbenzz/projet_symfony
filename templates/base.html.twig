@@ -14,10 +14,20 @@
         {% endblock %}
     </head>
     <body>
-
+    <header class="Header">
+        <p class="Brand">Telem</p>
+    </header>
+    <aside class="MainMenu">
+        Menu
+    </aside>
+    <main class="MainContent">
         {% block body %}
             <h1> Hello World ! </h1>
             <p> Je suis du contenu dans le template base.html.twig </p>
         {% endblock %}
+    </main>
+    <footer>
+        ici un pied de page
+    </footer>
     </body>
 </html>
