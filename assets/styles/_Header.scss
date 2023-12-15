@@ -1,11 +1,21 @@
 .Header {
   height: 100px;
   background-color: $header-bg-color;
-  padding: $padding-base;
+  padding: $header-padding;
 
 
   //pour gérer un centrage vertical des éléments enfants
   display: flex;
   align-items: center;
 
+  &_brand {
+    //cette propriété permet de déterminer la taille de l'élément flexible
+    flex-basis: $header-brand-width;
+    box-sizing: border-box;
+  }
+
+  &_banner{
+    flex-grow: 1;
+
+  }
 }
