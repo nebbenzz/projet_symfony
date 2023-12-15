@@ -1,4 +1,4 @@
-body {
-    background-color: pink;
-    color : red;
-}
+@import "_reset";
+@import "_initFont";
+@import "_Card";
+@import "_Image";
