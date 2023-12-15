@@ -3,18 +3,18 @@
   border-radius: 3px;
   height: 300px;
   padding: 5px;
-  border: solid #d5e3ec 2px;
+  border: solid $card-border-color 2px;
 
   display: flex; //les elements directement enfants deviennent des flex-items
 //(ils se placent sur la même ligne les uns à la suite des autres sans retour à la ligne)
 
   &:hover {
-    border: solid 5px darken(#d5e3ec, 20%);
+    border: solid 5px $card-border-color-hover;
   }
 
   &.-only{
     &:hover {
-      border: solid #d5e3ec 2px;
+      border: solid $card-border-color 2px;
     }
   }
 
