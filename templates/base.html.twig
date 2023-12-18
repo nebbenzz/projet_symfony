@@ -26,11 +26,19 @@
     </aside>
     <main class="MainContent LayoutContainer_mainContent">
         {# {{ dump (app.flashes) }} #}
-        {%  for messages in app.flashes %}
+        {%  for label,messages in app.flashes %}
             {% for message in messages %}
-                <p>{{ message }}</p>
+                <p class="Message -{{ label }}">{{ message }}</p>
             {% endfor %}
         {% endfor %}
+
+{#         <p class="Message"> Message par défaut </p>
+        <p class="Message -notice"> Message neutre </p>
+        <p class="Message -success"> Message de succès</p>
+        <p class="Message -warning"> Message d'alerte </p>
+        <p class="Message -error"> Message d'erreur </p> #}
+
+
         {% block body %}
             <h1> Hello World ! </h1>
             <p> Je suis du contenu dans le template base.html.twig </p>

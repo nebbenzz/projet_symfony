@@ -37,6 +37,15 @@ class ManageProductController extends AbstractController
 
             $this->addFlash('success', 'Le produit a été ajouté au catalogue');
 
+            $this->addFlash('error', 'Autre message de succès');
+
+            $this->addFlash('notice', 'Autre message d\'information');
+
+            $this->addFlash('notice', 'Autre message d\'information numéro 2');
+
+            $this->addFlash('warning', 'Autre message d\'erreur');
+
+
             return $this->redirectToRoute('product_show_all');
         }
         return $this->render('product/product_new.html.twig', ['form' => $form->createView()]);
