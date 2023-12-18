@@ -23,9 +23,8 @@ class ManageProductController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()){
-            echo 'Le formulaire a été validé !';
-            dd($product);
+        if ($form->isSubmitted() && $form->isValid()){
+            //persister l'objet en bdd
         }
         return $this->render('product/product_new.html.twig', ['form' => $form->createView()]);
 

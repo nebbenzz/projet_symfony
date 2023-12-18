@@ -18,7 +18,7 @@ class ProductType extends AbstractType
         $builder->add('name', TextType::class, ['label'=> 'Nom'])
             ->add('description', TextareaType::class, ['label'=> 'Description', 'required'=>false])
             ->add('quantityInStock', IntegerType::class, ['label'=> 'Quantité', 'required'=>false])
-            ->add('price', TextType::class, ['label'=> 'Prix'])
+            ->add('price', IntegerType::class, ['label'=> 'Prix'])
             //->add('enregistrer', SubmitType::class)
             ;
 
