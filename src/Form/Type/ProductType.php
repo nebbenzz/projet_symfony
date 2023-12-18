@@ -19,8 +19,10 @@ class ProductType extends AbstractType
             ->add('description', TextareaType::class, ['label'=> 'Description', 'required'=>false])
             ->add('quantityInStock', IntegerType::class, ['label'=> 'Quantité', 'required'=>false])
             ->add('price', TextType::class, ['label'=> 'Prix'])
-            ->add('enregistrer', SubmitType::class)
+            //->add('enregistrer', SubmitType::class)
             ;
+
+
     }
 
     public function configureOptions(OptionsResolver $resolver)
