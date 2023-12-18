@@ -34,6 +34,23 @@ $brand-bg-color: #FF8119;
 $brand-font-color : #fff;
 $brand-font-family: 'Oxygen', sans-serif;
 
+/* ********* Button  ********** */
+//bouton par défaut
+$button-default-color: #6B6B6B;
+$button-default-reverse-color: white;
+
+//bouton de lien
+$button-link-color: $color-base;
+$button-link-reverse-color: white;
+
+//bouton de validation sans danger
+$button-no-danger-color: green;
+$button-no-danger-reverse-color: white;
+
+//bouton de danger
+$button-danger-color: red;
+$button-danger-reverse-color: white;
+
 /* *********  Card  ********** */
 $card-border-color: #d5e3ec;
 $card-border-color-hover: darken($card-border-color, 20%);
