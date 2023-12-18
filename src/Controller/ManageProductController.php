@@ -35,6 +35,8 @@ class ManageProductController extends AbstractController
             //pour faire simple, le produit est inséré dans la bdd
             $em->flush();
 
+            $this->addFlash('success', 'Le produit a été ajouté au catalogue');
+
             return $this->redirectToRoute('product_show_all');
         }
         return $this->render('product/product_new.html.twig', ['form' => $form->createView()]);
