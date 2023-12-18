@@ -11,38 +11,78 @@ class ProductRepository extends ServiceEntityRepository
 {
 
     private QueryBuilder $qb;
+
+    private string $alias = 'pdt';
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Product::class);
     }
 
-    public function searchWithDql(string $keyword): array {
-        $entityManager = $this->getEntityManager();
-        $query = $entityManager->createQuery(
-            '
-                SELECT p
-                FROM App\Entity\Product p
-                WHERE p.name LIKE :name
-                '
-        )
-        ->setParameter('name', '%'.$keyword.'%');
 
-        return $query->execute(); //tableau d'objet
-    }
+    //**************************************************************
+    // region *H1* Methodes retournant un QueryBuilder
+    //**************************************************************
 
-    public function searchWithQB(string $keyword): array {
-        //construction de la requête
-        $this->qb = $this->createQueryBuilder('p')
-            ->where('p.name LIKE :name')
-            ->setParameter('name', '%'.$keyword.'%');
 
-        $this->filterDescription($keyword);
-        return $this->qb->getQuery()->getResult(); //tableau d'objets
-    }
+    //--------------------------------------------------------------
+    //region **H2** Initialisation du queryBuilder
+    //--------------------------------------------------------------
 
-    public function filterDescription(string $keyword){
-        $this->qb->orWhere('p.description LIKE :name')
-            ->setParameter('name','%'.$keyword.'%');
+    /** Initialisation du queryBuilder courant de la variable qb*/
+    private function initializeQueryBuilder():QueryBuilder{
+        $this->qb = $this->createQueryBuilder($this->alias)
+            ->select($this->alias);
+
         return $this->qb;
     }
+
+
+    //--------------------------------------------------------------
+    //endregion **H2** Initialisation du queryBuilder
+    //--------------------------------------------------------------
+
+    //--------------------------------------------------------------
+    //region **H2** Filtres
+    //--------------------------------------------------------------
+
+    private function orNameLike(string $keyword):void {
+        $this->qb->orWhere("$this->alias.name LIKE :name")
+            ->setParameter('name', '%'.$keyword.'%');
+
+    }
+
+    private function orDescriptionLike(string $keyword):void {
+        $this->qb->orWhere("$this->alias.description LIKE :description")
+            ->setParameter('description', '%'.$keyword.'%');
+
+    }
+
+    private function orPropertyLike(string $propertyName, string $keyword):void{
+        $this->qb->orWhere("$this->alias.$propertyName LIKE :$propertyName")
+            ->setParameter($propertyName, '%'.$keyword.'%');
+    }
+
+    //--------------------------------------------------------------
+    //endregion **H2** Filtres
+    //--------------------------------------------------------------
+
+    //**************************************************************
+    //endregion *H1* Methodes retournant un QueryBuilder
+    //**************************************************************
+
+    public function search(string $keyword):array {
+        $this->initializeQueryBuilder();
+        //on recherche dans la description
+        $this->orPropertyLike('description', $keyword);
+        //on recherche dans le no du produit
+        $this->orPropertyLike('name', $keyword);
+
+        return $this->qb->getQuery()->getResult();
+    }
+
+
+
+
+
 }

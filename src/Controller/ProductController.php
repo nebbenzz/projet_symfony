@@ -49,10 +49,10 @@ class ProductController extends AbstractController
     public function search(Request $request, ProductRepository $productRepository):Response {
         $keywordSearched = $request->request->get('searchProduct');
 
-        $productsWithDQL = $productRepository->searchWithDql($keywordSearched);
-        $productsWithQB = $productRepository->searchWithQB($keywordSearched);
 
-        return $this->render('product/product_show_all.html.twig', ['products'=>$productsWithQB]);
+        $products = $productRepository->search($keywordSearched);
+
+        return $this->render('product/product_show_all.html.twig', ['products'=>$products]);
 
     }
 }
