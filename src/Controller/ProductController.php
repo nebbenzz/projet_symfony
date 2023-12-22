@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Product;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,14 +29,7 @@ class ProductController extends AbstractController
 
     /** contrôleur qui sert une page contenant la fiche d'un produit */
     #[Route('/product/show/{id}', name: 'product_show', requirements: ['id' =>'\d+'])]
-    public function show(int $id, ProductRepository $productRepository):Response {
-
-        //recuperation du produit dont l'id a été passé à notre contrôleur
-        $product = $productRepository->find($id);
-
-        if (null == $product){
-            throw new NotFoundHttpException('Ce produit n\'existe pas');
-        }
+    public function show(Product $product, ProductRepository $productRepository):Response {
 
         //il faut construire la page html avec le produit recupere
         return $this->render('product/product_show.html.twig',
